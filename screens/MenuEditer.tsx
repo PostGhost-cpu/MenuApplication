@@ -5,7 +5,7 @@ import { View, Text } from 'react-native'
 const MenuEditer = () => {
   return (
     <View>
-      <Text>MenuEditer</Text>
+      <Text>Editer</Text>
     </View>
   )
 }

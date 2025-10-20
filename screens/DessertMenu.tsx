@@ -8,7 +8,7 @@ const DessertMenu = () => {
   return (
     <View>
       <Menu />
-
+      <Text>Menu</Text>
       <Tab />
     </View>
   )

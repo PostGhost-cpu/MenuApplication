@@ -27,7 +27,8 @@ const TabStack = createBottomTabNavigator<TabParams>();
 
 export default function App() {
   return (
-    <><NavigationContainer>
+    <>
+    <NavigationContainer>
       <Stack.Navigator initialRouteName='Splash Screen'>
         <Stack.Screen name="Splash Screen" component={SplashScreen} />
         <Stack.Screen name="Starter Menu" component={StarterMenu} />
@@ -41,6 +42,7 @@ export default function App() {
           <TabStack.Screen name="Filter" component={MenuFilter} />
           <TabStack.Screen name="Receipt" component={MenuReceipt} />
         </TabStack.Navigator>
-      </NavigationContainer></>
+    </NavigationContainer>
+    </>
   );
 }

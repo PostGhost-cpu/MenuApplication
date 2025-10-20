@@ -8,7 +8,7 @@ const MainMenu = () => {
   return (
     <View>
       <Menu />
-
+      <Text>Menu</Text>
       <Tab />
     </View>
   )

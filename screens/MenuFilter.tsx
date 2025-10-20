@@ -4,7 +4,7 @@ import React from 'react'
 const MenuFilter = () => {
   return (
     <View>
-      <Text>MenuFilter</Text>
+      <Text>Filter</Text>
     </View>
   )
 }
