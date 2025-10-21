@@ -12,4 +12,16 @@ export const mainArray: MainData[] = [
         price: "245,00",
         description: "Corn tortillas filled with shredded chicken, smothered in a rich New Mexican red chile sauce, topped with melted cheddar cheese and crema."
     },
+    {
+        img: require('../assets/menu/grilled-steak.png'),
+        name: "Cajun spicy Grilled Ribeye with bourbon butter",
+        price: "243,00",
+        description: "Char-grilled steak topped with bourbon butter and house-smoked herbs."
+    },
+    {
+        img: require('../assets/menu/Seared-tuna-with-sauce.jpg'),
+        name: "Seared Tuna with Mango Habanero Sauce",
+        price: "225,00",
+        description: "Pan-seared tuna with spicy mango habanero glaze."
+    },
 ]

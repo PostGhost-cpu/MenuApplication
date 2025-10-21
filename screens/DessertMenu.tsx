@@ -9,7 +9,7 @@ const ListItem = ({singleBlock}:{singleBlock:DessertData}) => {
     <View style={styles.menuoption}>
       <Image style={styles.menuimg} source={{ uri: singleBlock.img }} />
       <View style={styles.menuinfo}>
-        <View style={[styles.pill, styles.pillStarter]}>
+        <View style={[styles.pill, styles.pillDessert]}>
           <View style={styles.titleRow}>
             <Text style={styles.title} numberOfLines={2}>
               {singleBlock.name}
