@@ -25,12 +25,13 @@ const SplashScreen = () => {
 export default SplashScreen
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
-    padding: 10,
+    flex: 1, 
+    backgroundColor: '#fff'
   },
   splashcontainer: {
     alignItems: "center",
     backgroundColor: "#fff3b0",
+    paddingBottom: 50,
   },
   header: {
     fontSize: 20,

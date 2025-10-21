@@ -20,7 +20,7 @@ export const mainArray: MainData[] = [
         description: "Char-grilled steak topped with bourbon butter and house-smoked herbs."
     },
     {
-        img: require('../assets/menu/Seared-tuna-with-sauce.png'),
+        img: require('../assets/menu/tuna-tartare.png'),
         name: "Seared Tuna with Mango Habanero Sauce",
         price: "225,00",
         description: "Pan-seared tuna with spicy mango habanero glaze."

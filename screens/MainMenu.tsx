@@ -4,6 +4,8 @@ import Menu from '../components/Menu'
 import Tab from '../components/Tab'
 import { mainArray, MainData } from '../components/MainList'
 
+const PLACEHOLDER = require('../assets/place-holder.png'); // adjust path if needed
+
 const ListItem = ({singleBlock}:{singleBlock:MainData}) => {
   function getImageSource(img: string | number | undefined): import("react-native").ImageSourcePropType | undefined {
     throw new Error('Function not implemented.')
@@ -11,7 +13,18 @@ const ListItem = ({singleBlock}:{singleBlock:MainData}) => {
 
   return (
     <View style={styles.menuoption}>
-      <Image style={styles.menuimg} source={getImageSource(singleBlock.img)} />
+      <Image
+  style={styles.menuimg}
+  source={
+    singleBlock.img
+      ? (typeof singleBlock.img === 'number'
+          ? singleBlock.img            // local require(...) -> numeric asset id
+          : { uri: singleBlock.img }   // remote uri string
+        )
+      : PLACEHOLDER                    // fallback
+  }
+/>
+
       <View style={styles.menuinfo}>
         <View style={[styles.pill, styles.pillMain]}>
           <View style={styles.titleRow}>
