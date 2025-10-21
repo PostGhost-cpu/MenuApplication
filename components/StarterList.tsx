@@ -1,5 +1,5 @@
 export interface StarterData {
-    img: string;
+    img: any;
     name: string;
     price: string;
     description: string;
@@ -7,7 +7,7 @@ export interface StarterData {
 
 export const starterArray: StarterData[] = [
     {
-        img: require('../assets/menu/slices-of-bread-with-salmon-and-avocad0.jpg'),
+        img: require('../assets/menu/slices-of-bread-with-salmon-and-avocado.png'),
         name: "Crab and Avocado toast with pickled red onions",
         price: "115,00",
         description: "Fresh crab meat mixed with creamy avocado, served on toasted artisanal bread and topped with tangy pickled red onions."
