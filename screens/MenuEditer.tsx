@@ -67,7 +67,7 @@ const MenuEditer: React.FC = () => {
       starterArray.push(newItem as StarterData);
       break;
     case 'Mains':
-      mainArray.push(newItem as MainData);
+      mainArray.push(newItem as unknown as MainData);
       break;
     case 'Desserts':
       dessertArray.push(newItem as DessertData);
@@ -82,12 +82,13 @@ const MenuEditer: React.FC = () => {
     }
 
     const newItem: MenuItem = {
-    id: Date.now().toString(),
-    name: name.trim(),
-    price: price.trim(),
-    description: description.trim(),
-    img: imageUri ?? undefined,
-  };
+      id: Date.now().toString(),
+      name: name.trim(),
+      price: price.trim(),
+      description: description.trim(),
+      img: imageUri ?? undefined, // imageUri must be a string from the picker
+    };
+
 
     try {
       saveToArray(newItem);

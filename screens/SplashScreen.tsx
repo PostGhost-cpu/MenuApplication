@@ -1,50 +1,98 @@
-import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+// SplashScreen.tsx
+import React from 'react';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { StackParams } from '../App';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { StackParams } from '../App';
 
-const SplashScreen = () => {
+const LOGO = require('../assets/icon.png'); 
+
+const SplashScreen: React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
-  return (
-    <>
-    <View style={styles.container}>
-      <Text style={styles.header}>Your table is ready.</Text>
-      <Text style={styles.subheader}>Explore our dishes and discover the chefs specials</Text>
-    </View>
-    <View style={styles.splashcontainer}>
-        <TouchableOpacity style={styles.touchable} activeOpacity={0.7}
-          onPress={() => navigation.navigate("Starter Menu")}>
-          <Text>Get Started</Text>
-        </TouchableOpacity>
-    </View>
-    </>
-  )
-}
 
-export default SplashScreen
+  return (
+    <SafeAreaView style={styles.safe}>
+      <View style={styles.container}>
+        <View style={styles.imageWrap}>
+          <Image source={LOGO} style={styles.heroImage} resizeMode="cover" />
+        </View>
+
+        <View style={styles.textWrap}>
+          <Text style={styles.header}>Your table is ready.</Text>
+          <Text style={styles.subheader}>Explore our dishes and discover the chef's specials</Text>
+        </View>
+      </View>
+
+      <View style={styles.bottomBar}>
+        <TouchableOpacity
+          style={styles.startBtn}
+          onPress={() => navigation.navigate('Starter Menu')}
+          activeOpacity={0.85}
+        >
+          <Text style={styles.startText}>Get Started</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
+};
+
+export default SplashScreen;
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1, 
-    backgroundColor: '#fff'
+  safe: { flex: 1, backgroundColor: '#fff' },
+  container: { flex: 1, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 24, paddingHorizontal: 18 },
+  imageWrap: {
+    width: '100%',
+    borderRadius: 12,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    elevation: 6,
   },
-  splashcontainer: {
-    alignItems: "center",
-    backgroundColor: "#fff3b0",
-    paddingBottom: 50,
+  heroImage: {
+    width: '100%',
+    height: 280,
+    backgroundColor: '#D9D56B',
   },
-  header: {
-    fontSize: 20,
-    fontWeight: "bold",
+  textWrap: { marginTop: 20, alignItems: 'center', paddingHorizontal: 8 },
+  header: { fontSize: 24, fontWeight: '800', color: '#3C231C', textAlign: 'center' },
+  subheader: { fontSize: 15, color: '#6B5A4A', marginTop: 8, textAlign: 'center' },
+
+  bottomBar: {
+    position: 'absolute',
+    left: 12,
+    right: 12,
+    bottom: 18,
+    height: 82,
+    borderRadius: 22,
+    backgroundColor: '#FFF0B8',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 14,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 6 },
+    shadowOpacity: 0.06,
+    shadowRadius: 8,
+    elevation: 8,
   },
-  subheader: {
-    fontSize: 16,
+
+  startBtn: {
+    width: 200,
+    height: 56,
+    borderRadius: 16,
+    backgroundColor: '#3C231C',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  touchable: {
-    color: "#000",
-    paddingTop: 10,
-    paddingBottom: 10,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  startText: { color: '#FFF6DB', fontWeight: '800', fontSize: 16 },
 });

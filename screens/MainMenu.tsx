@@ -1,67 +1,52 @@
-import React from 'react'
-import { View, Text, StyleSheet, FlatList, Image } from 'react-native'
-import Menu from '../components/Menu'
-import Tab from '../components/Tab'
-import { mainArray, MainData } from '../components/MainList'
+// MainMenu.tsx
+import React from 'react';
+import { View, Text, StyleSheet, FlatList, Image, ImageSourcePropType } from 'react-native';
+import Menu from '../components/Menu';
+import Tab from '../components/Tab';
+import { mainArray, MainData } from '../components/MainList';
 
-const PLACEHOLDER = require('../assets/place-holder.png'); // adjust path if needed
+const PLACEHOLDER = require('../assets/place-holder.png');
 
-const ListItem = ({singleBlock}:{singleBlock:MainData}) => {
-  function getImageSource(img: string | number | undefined): import("react-native").ImageSourcePropType | undefined {
-    throw new Error('Function not implemented.')
-  }
+const getImageSource = (img?: string | number): ImageSourcePropType => {
+  if (!img) return PLACEHOLDER;
+  return typeof img === 'number' ? img : { uri: String(img) };
+};
 
-  return (
-    <View style={styles.menuoption}>
-      <Image
-  style={styles.menuimg}
-  source={
-    singleBlock.img
-      ? (typeof singleBlock.img === 'number'
-          ? singleBlock.img            // local require(...) -> numeric asset id
-          : { uri: singleBlock.img }   // remote uri string
-        )
-      : PLACEHOLDER                    // fallback
-  }
-/>
-
-      <View style={styles.menuinfo}>
-        <View style={[styles.pill, styles.pillMain]}>
-          <View style={styles.titleRow}>
-            <Text style={styles.title} numberOfLines={2}>
-              {singleBlock.name}
-            </Text>
-            <Text style={styles.price}>{singleBlock.price}</Text>
-          </View>
-
-          <Text style={styles.description} numberOfLines={2}>
-            {singleBlock.description}
-          </Text>
-
-          <View style={styles.plusWrap}>
-            <Text style={styles.plusText}>+</Text>
-          </View>
+const ListItem = ({ singleBlock }: { singleBlock: MainData }) => (
+  <View style={styles.menuoption}>
+    <Image style={styles.menuimg} source={getImageSource(singleBlock.img)} />
+    <View style={styles.menuinfo}>
+      <View style={[styles.pill, styles.pillMain]}>
+        <View style={styles.titleRow}>
+          <Text style={styles.title} numberOfLines={2}>{singleBlock.name}</Text>
+          <Text style={styles.price}>{singleBlock.price}</Text>
         </View>
+        <Text style={styles.description} numberOfLines={2}>{singleBlock.description}</Text>
+        <View style={styles.plusWrap}><Text style={styles.plusText}>+</Text></View>
       </View>
     </View>
-  );
-}
+  </View>
+);
 
-const MainMenu = () => {
-  return (
-    <View>
-      <Menu />
-      <Text style={styles.header}>Menu</Text>
-      <FlatList
-        data={mainArray}
-        renderItem={({ item }) => <ListItem singleBlock={item} />}
-      />
-      <Tab />
-    </View>
-  )
-}
+const MainMenu = () => (
+  <View style={styles.container}>
+    <Menu />
+    <Text style={styles.header}>Menu</Text>
+    <FlatList
+      data={mainArray}
+      renderItem={({ item }) => <ListItem singleBlock={item} />}
+      keyExtractor={(item, idx) => (item.id ? String(item.id) : `${item.name}-${idx}`)}
+      contentContainerStyle={{ paddingBottom: 120 }}
+    />
+    <Tab />
+  </View>
+);
 
-export default MainMenu
+export default MainMenu;
+
+// ...styles (reuse your existing styles)...
+
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -110,14 +95,8 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     elevation: 3,
   },
-  pillStarter: {
-    backgroundColor: '#D9D56B',
-  },
   pillMain: {
     backgroundColor: '#4E6E33',
-  },
-  pillDessert: {
-    backgroundColor: '#D9D56B', 
   },
   titleRow: {
     flexDirection: 'row',
@@ -139,7 +118,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 12,
-    color: '#6B5A4A', 
+    color: '#6B5A4A',
     marginTop: 6,
     lineHeight: 16,
   },
@@ -160,6 +139,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     lineHeight: 18,
   },
+  // rest of styles kept for future use
   bottomFilterBar: {
     position: 'absolute',
     left: 12,
@@ -208,7 +188,7 @@ const styles = StyleSheet.create({
   applyButton: {
     marginTop: 18,
     alignSelf: 'center',
-    backgroundColor: '#3C231C', 
+    backgroundColor: '#3C231C',
     paddingHorizontal: 40,
     paddingVertical: 12,
     borderRadius: 28,

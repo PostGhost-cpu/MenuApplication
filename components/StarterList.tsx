@@ -1,8 +1,9 @@
 export interface StarterData {
-    img: any;
-    name: string;
-    price: string;
-    description: string;
+  id?: string;
+  img?: string | number; // number for require(...), string for remote URI
+  name: string;
+  price: string;
+  description: string;
 }
 
 export const starterArray: StarterData[] = [

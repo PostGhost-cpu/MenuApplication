@@ -1,42 +1,48 @@
 import React from 'react'
-import { View, Text, StyleSheet, FlatList, Image } from 'react-native'
+import { View, Text, StyleSheet, FlatList, Image, ImageSourcePropType } from 'react-native'
 import Menu from '../components/Menu'
 import Tab from '../components/Tab'
 import { dessertArray, DessertData } from '../components/DessertList'
 
-const ListItem = ({singleBlock}:{singleBlock:DessertData}) => {
+const PLACEHOLDER = require('../assets/place-holder.png') // adjust path to your placeholder
+
+const getImageSource = (img?: string | number): ImageSourcePropType => {
+  if (!img) return PLACEHOLDER
+  return typeof img === 'number' ? img : { uri: String(img) }
+}
+
+const ListItem: React.FC<{ singleBlock: DessertData }> = ({ singleBlock }) => {
   return (
     <View style={styles.menuoption}>
-      <Image style={styles.menuimg} source={{ uri: singleBlock.img }} />
-      <View style={styles.menuinfo}>
-        <View style={[styles.pill, styles.pillDessert]}>
-          <View style={styles.titleRow}>
-            <Text style={styles.title} numberOfLines={2}>
-              {singleBlock.name}
-            </Text>
-            <Text style={styles.price}>{singleBlock.price}</Text>
-          </View>
-
-          <Text style={styles.description} numberOfLines={2}>
-            {singleBlock.description}
+      <Image style={styles.menuimg} source={getImageSource(singleBlock.img)} />
+      <View style={[styles.pill, styles.pillDessert]}>
+        <View style={styles.titleRow}>
+          <Text style={styles.title} numberOfLines={2}>
+            {singleBlock.name}
           </Text>
+          <Text style={styles.price}>{singleBlock.price}</Text>
+        </View>
 
-          <View style={styles.plusWrap}>
-            <Text style={styles.plusText}>+</Text>
-          </View>
+        <Text style={styles.description} numberOfLines={2}>
+          {singleBlock.description}
+        </Text>
+
+        <View style={styles.plusWrap}>
+          <Text style={styles.plusText}>+</Text>
         </View>
       </View>
     </View>
-  );
+  )
 }
 
-const DessertMenu = () => {
+const DessertMenu: React.FC = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <Menu />
       <Text style={styles.header}>Menu</Text>
       <FlatList
         data={dessertArray}
+        keyExtractor={(item, idx) => (item.id ? String(item.id) : String(idx))}
         renderItem={({ item }) => <ListItem singleBlock={item} />}
       />
       <Tab />
@@ -45,6 +51,7 @@ const DessertMenu = () => {
 }
 
 export default DessertMenu
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -100,7 +107,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#4E6E33',
   },
   pillDessert: {
-    backgroundColor: '#D9D56B', 
+    backgroundColor: '#D9D56B',
   },
   titleRow: {
     flexDirection: 'row',
@@ -122,7 +129,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 12,
-    color: '#6B5A4A', 
+    color: '#6B5A4A',
     marginTop: 6,
     lineHeight: 16,
   },
@@ -191,7 +198,7 @@ const styles = StyleSheet.create({
   applyButton: {
     marginTop: 18,
     alignSelf: 'center',
-    backgroundColor: '#3C231C', 
+    backgroundColor: '#3C231C',
     paddingHorizontal: 40,
     paddingVertical: 12,
     borderRadius: 28,
@@ -205,4 +212,4 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: '#8A7B6F',
   },
-});
+})

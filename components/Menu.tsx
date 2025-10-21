@@ -7,10 +7,13 @@ import { StackParams } from "../App";
 type RouteNames = keyof StackParams;
 
 const Labels: Record<RouteNames, string> = {
-    "Starter Menu": "Starters",
-    "Main Menu": "Mains",
-    "Dessert Menu": "Dessert",
-    "Splash Screen": ""
+  "Starter Menu": "Starters",
+  "Main Menu": "Mains",
+  "Dessert Menu": "Dessert",
+  "Splash Screen": "",
+  Editer: "",
+  Filter: "",
+  Receipt: ""
 };
 
 const Menu: React.FC = () => {
