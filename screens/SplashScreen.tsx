@@ -1,41 +1,21 @@
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
-import CartIcon from '../assets/icon-cart.svg'
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { StackParams } from '../App';
-
-const { getDefaultConfig } = require("metro-config");
-
-module.exports = (async () => {
-  const {
-    resolver: { sourceExts, assetExts },
-  } = await getDefaultConfig();
-
-  return {
-    transformer: {
-      babelTransformerPath: require.resolve("react-native-svg-transformer"),
-    },
-    resolver: {
-      assetExts: assetExts.filter((ext: string) => ext !== "svg"),
-      sourceExts: [...sourceExts, "svg"],
-    },
-  };
-})();
 
 const SplashScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
   return (
     <>
-    <View>
-      <Text>Your table is ready.</Text>
-      <Text>Explore our dishes and discover the chefs specials</Text>
+    <View style={styles.container}>
+      <Text style={styles.header}>Your table is ready.</Text>
+      <Text style={styles.subheader}>Explore our dishes and discover the chefs specials</Text>
     </View>
-    <View>
-        <Text>Tap the cart to start your order</Text>
-        <TouchableOpacity
+    <View style={styles.splashcontainer}>
+        <TouchableOpacity style={styles.touchable} activeOpacity={0.7}
           onPress={() => navigation.navigate("Starter Menu")}>
-          <CartIcon width={100} height={100} />
+          <Text>Get Started</Text>
         </TouchableOpacity>
     </View>
     </>
@@ -43,3 +23,27 @@ const SplashScreen = () => {
 }
 
 export default SplashScreen
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#fff",
+    padding: 10,
+  },
+  splashcontainer: {
+    alignItems: "center",
+    backgroundColor: "#fff3b0",
+  },
+  header: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+  subheader: {
+    fontSize: 16,
+  },
+  touchable: {
+    color: "#000",
+    paddingTop: 10,
+    paddingBottom: 10,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});

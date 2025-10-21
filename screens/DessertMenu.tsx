@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import Menu from '../components/Menu'
 import Tab from '../components/Tab'
 
@@ -8,10 +8,20 @@ const DessertMenu = () => {
   return (
     <View>
       <Menu />
-      <Text>Menu</Text>
+      <Text style={styles.header}>Menu</Text>
+
+      
+
       <Tab />
     </View>
   )
 }
 
 export default DessertMenu
+const styles = StyleSheet.create({
+  header: {
+    fontSize: 20,
+    fontWeight: "bold",
+    textDecorationLine: 'underline'
+  },
+});
