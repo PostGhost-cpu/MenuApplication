@@ -4,13 +4,12 @@ import Menu from '../components/Menu'
 import Tab from '../components/Tab'
 import { starterArray, StarterData } from '../components/StarterList'
 
-// safe image helper
 import { ImageSourcePropType } from 'react-native';
-const PLACEHOLDER = require('../assets/place-holder.png'); // adjust path to your placeholder
+const PLACEHOLDER = require('../assets/place-holder.png'); 
 
 const getImageSource = (img?: string | number): ImageSourcePropType => {
-  if (!img) return PLACEHOLDER;                    // fallback local asset
-  return typeof img === 'number' ? img : { uri: String(img) }; // number => require, string => URI
+  if (!img) return PLACEHOLDER;                    
+  return typeof img === 'number' ? img : { uri: String(img) };
 };
 
 

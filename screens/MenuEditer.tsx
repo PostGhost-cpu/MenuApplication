@@ -7,14 +7,7 @@ import { mainArray, MainData } from '../components/MainList';
 import { dessertArray, DessertData } from '../components/DessertList';
 
 type Course = 'Starters' | 'Mains' | 'Desserts';
-
-type MenuItem = {
-  id?: string;
-  img?: string | number;
-  name: string;
-  price: string;
-  description: string;
-};
+type MenuItem = { id?: string; img?: string | number; name: string; price: string; description: string; };
 
 const COURSE_OPTIONS: Course[] = ['Starters', 'Mains', 'Desserts'];
 
@@ -29,16 +22,13 @@ const MenuEditer: React.FC = () => {
   const [courseModalVisible, setCourseModalVisible] = useState(false);
 
   async function handlePickImage() {
-  // keep options simple to avoid typing mismatch across versions
   const options: any = { mediaType: 'photo', quality: 0.8, selectionLimit: 1 };
 
   try {
     const result = await launchImageLibrary(options);
-    // result may be { didCancel, errorCode, assets } or similar
     if (!result) {
       return;
     }
-    // user cancelled
     if ((result as any).didCancel) return;
 
     if ((result as any).errorCode) {
@@ -86,7 +76,7 @@ const MenuEditer: React.FC = () => {
       name: name.trim(),
       price: price.trim(),
       description: description.trim(),
-      img: imageUri ?? undefined, // imageUri must be a string from the picker
+      img: imageUri ?? undefined, 
     };
 
 
@@ -243,7 +233,6 @@ const MenuEditer: React.FC = () => {
 };
 
 export default MenuEditer;
-
 const styles = StyleSheet.create({
   screen: { 
     flex: 1, 

@@ -1,4 +1,3 @@
-// App.tsx
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -32,7 +31,6 @@ export default function App() {
         <Stack.Screen name="Main Menu" component={MainMenu} />
         <Stack.Screen name="Dessert Menu" component={DessertMenu} />
 
-        {/* These are the editor/filter/receipt screens your Tab navigates to */}
         <Stack.Screen name="Editer" component={MenuEditer} />
         <Stack.Screen name="Filter" component={MenuFilter} />
         <Stack.Screen name="Receipt" component={MenuReceipt} />

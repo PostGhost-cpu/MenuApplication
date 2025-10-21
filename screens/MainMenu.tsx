@@ -41,10 +41,6 @@ const MainMenu = () => (
 );
 
 export default MainMenu;
-
-// ...styles (reuse your existing styles)...
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -137,7 +133,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     lineHeight: 18,
   },
-  // rest of styles kept for future use
   bottomFilterBar: {
     position: 'absolute',
     left: 12,

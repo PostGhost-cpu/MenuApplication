@@ -4,7 +4,7 @@ import Menu from '../components/Menu'
 import Tab from '../components/Tab'
 import { dessertArray, DessertData } from '../components/DessertList'
 
-const PLACEHOLDER = require('../assets/place-holder.png') // adjust path to your placeholder
+const PLACEHOLDER = require('../assets/place-holder.png') 
 
 const getImageSource = (img?: string | number): ImageSourcePropType => {
   if (!img) return PLACEHOLDER
@@ -38,6 +38,7 @@ const ListItem: React.FC<{ singleBlock: DessertData }> = ({ singleBlock }) => {
 const DessertMenu: React.FC = () => {
   return (
     <View style={styles.container}>
+      <Menu />
       <Text style={styles.header}>Menu</Text>
       <FlatList
         data={dessertArray}
@@ -49,7 +50,6 @@ const DessertMenu: React.FC = () => {
 }
 
 export default DessertMenu
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

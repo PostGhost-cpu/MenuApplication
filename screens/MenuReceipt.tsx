@@ -1,20 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { SafeAreaView, View, Text, StyleSheet, FlatList, Image, TouchableOpacity, TextInput, ScrollView, Alert, } from 'react-native';
 
-type ReceiptItem = {
-  id?: string;
-  img?: string | number;
-  name: string;
-  price: string | number; 
-  qty?: number;
-};
-
-type Props = {
-  order?: ReceiptItem[];
-  taxRate?: number; 
-  onConfirm?: (order: ReceiptItem[], totals: { subtotal: number; tax: number; tip: number; total: number }) => void;
-  onClose?: () => void;
-};
+type ReceiptItem = { id?: string; img?: string | number; name: string; price: string | number; qty?: number;};
+type Props = { order?: ReceiptItem[]; taxRate?: number; onConfirm?: (order: ReceiptItem[], totals: { subtotal: number; tax: number; tip: number; total: number }) => void; onClose?: () => void;};
 
 const SAMPLE_ORDER: ReceiptItem[] = [
   {
@@ -153,7 +141,6 @@ const MenuReceipt: React.FC<Props> = ({ order = SAMPLE_ORDER, taxRate = 0.15, on
 };
 
 export default MenuReceipt;
-
 const styles = StyleSheet.create({
   screen: { 
     flex: 1, 

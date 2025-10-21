@@ -1,6 +1,6 @@
 export interface StarterData {
   id?: string;
-  img?: string | number; // number for require(...), string for remote URI
+  img?: string | number;
   name: string;
   price: string;
   description: string;

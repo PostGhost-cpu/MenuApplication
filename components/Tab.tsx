@@ -1,4 +1,3 @@
-// components/Tab.tsx
 import React from 'react';
 import { TouchableOpacity, View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
