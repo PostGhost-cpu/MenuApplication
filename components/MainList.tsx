@@ -1,9 +1,10 @@
 export interface MainData {
-    img: any;
-    name: string;
-    price: string;
-    description: string;
+  img?: string | number; // number for require(), string for uri
+  name: string;
+  price: string;
+  description: string;
 }
+
 
 export const mainArray: MainData[] = [
     {
@@ -19,7 +20,7 @@ export const mainArray: MainData[] = [
         description: "Char-grilled steak topped with bourbon butter and house-smoked herbs."
     },
     {
-        img: require('../assets/menu/Seared-tuna-with-sauce.jpg'),
+        img: require('../assets/menu/Seared-tuna-with-sauce.png'),
         name: "Seared Tuna with Mango Habanero Sauce",
         price: "225,00",
         description: "Pan-seared tuna with spicy mango habanero glaze."

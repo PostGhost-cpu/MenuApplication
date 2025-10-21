@@ -29,36 +29,37 @@ const MenuEditer: React.FC = () => {
   const [courseModalVisible, setCourseModalVisible] = useState(false);
 
   async function handlePickImage() {
-    const options: ImageLibraryOptions = {
-      mediaType: 'photo',
-      quality: 0.8,
-      selectionLimit: 1,
-    };
+  // keep options simple to avoid typing mismatch across versions
+  const options: any = { mediaType: 'photo', quality: 0.8, selectionLimit: 1 };
 
-    try {
-      const result = await launchImageLibrary(options);
-
-      if (result.didCancel) {
-        return;
-      }
-
-      if (result.errorCode) {
-        console.warn('ImagePicker error:', result.errorMessage || result.errorCode);
-        Alert.alert('Image Error', result.errorMessage || 'Failed to pick image.');
-        return;
-      }
-
-      const asset = result.assets && result.assets[0];
-      if (asset && asset.uri) {
-        setImageUri(asset.uri);
-      } else {
-        Alert.alert('Image', 'No image selected.');
-      }
-    } catch (err) {
-      console.error('handlePickImage error', err);
-      Alert.alert('Image Error', 'An unexpected error occurred while picking image.');
+  try {
+    const result = await launchImageLibrary(options);
+    // result may be { didCancel, errorCode, assets } or similar
+    if (!result) {
+      return;
     }
+    // user cancelled
+    if ((result as any).didCancel) return;
+
+    if ((result as any).errorCode) {
+      console.warn('ImagePicker error:', (result as any).errorMessage || (result as any).errorCode);
+      Alert.alert('Image Error', (result as any).errorMessage || 'Failed to pick image.');
+      return;
+    }
+
+    const assets = (result as any).assets;
+    const asset = Array.isArray(assets) && assets.length ? assets[0] : null;
+    if (asset && asset.uri) {
+      setImageUri(asset.uri);
+    } else {
+      Alert.alert('Image', 'No image selected.');
+    }
+  } catch (err) {
+    console.error('handlePickImage error', err);
+    Alert.alert('Image Error', 'An unexpected error occurred while picking image.');
   }
+}
+
 
   function saveToArray(newItem: MenuItem) {
   switch (course) {

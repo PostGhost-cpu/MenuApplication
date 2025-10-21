@@ -5,9 +5,13 @@ import Tab from '../components/Tab'
 import { mainArray, MainData } from '../components/MainList'
 
 const ListItem = ({singleBlock}:{singleBlock:MainData}) => {
+  function getImageSource(img: string | number | undefined): import("react-native").ImageSourcePropType | undefined {
+    throw new Error('Function not implemented.')
+  }
+
   return (
     <View style={styles.menuoption}>
-      <Image style={styles.menuimg} source={{ uri: singleBlock.img }} />
+      <Image style={styles.menuimg} source={getImageSource(singleBlock.img)} />
       <View style={styles.menuinfo}>
         <View style={[styles.pill, styles.pillMain]}>
           <View style={styles.titleRow}>

@@ -52,8 +52,9 @@ const MenuReceipt: React.FC<Props> = ({ order = SAMPLE_ORDER, taxRate = 0.15, on
   const items = order.map(it => ({ qty: it.qty ?? 1, ...it }));
 
   const subtotal = useMemo(() => {
-    return items.reduce((acc, it) => acc + parsePrice(it.price) * (it.qty ?? 1), 0);
-  }, [order]);
+  return items.reduce((acc, it) => acc + parsePrice(it.price) * (it.qty ?? 1), 0);
+}, [items]);
+
 
   const tip = useMemo(() => {
     const t = parsePrice(tipRaw);
