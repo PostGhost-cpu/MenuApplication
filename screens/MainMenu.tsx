@@ -32,13 +32,11 @@ const MainMenu = () => (
   <View style={styles.container}>
     <Menu />
     <Text style={styles.header}>Menu</Text>
-    <FlatList
-      data={mainArray}
-      renderItem={({ item }) => <ListItem singleBlock={item} />}
-      keyExtractor={(item, idx) => (item.id ? String(item.id) : `${item.name}-${idx}`)}
-      contentContainerStyle={{ paddingBottom: 120 }}
-    />
-    <Tab />
+      <FlatList
+        data={mainArray}
+        renderItem={({ item }) => <ListItem singleBlock={item} />}
+      />
+      <Tab />
   </View>
 );
 

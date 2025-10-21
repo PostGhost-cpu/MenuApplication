@@ -38,11 +38,9 @@ const ListItem: React.FC<{ singleBlock: DessertData }> = ({ singleBlock }) => {
 const DessertMenu: React.FC = () => {
   return (
     <View style={styles.container}>
-      <Menu />
       <Text style={styles.header}>Menu</Text>
       <FlatList
         data={dessertArray}
-        keyExtractor={(item, idx) => (item.id ? String(item.id) : String(idx))}
         renderItem={({ item }) => <ListItem singleBlock={item} />}
       />
       <Tab />
