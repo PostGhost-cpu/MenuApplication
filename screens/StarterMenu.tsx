@@ -12,7 +12,6 @@ const getImageSource = (img?: string | number): ImageSourcePropType => {
   return typeof img === 'number' ? img : { uri: String(img) };
 };
 
-
 const ListItem = ({singleBlock}:{singleBlock:StarterData}) => {
   return (
     <View style={styles.menuoption}>

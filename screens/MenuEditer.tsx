@@ -161,50 +161,229 @@ const MenuEditer: React.FC = () => {
 };
 
 export default MenuEditer;
-
-// styles unchanged where relevant; removed bottomBar styles from original
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: '#fff' },
-  headerBar: { width: '100%', paddingHorizontal: 14, paddingVertical: 10, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: 'transparent' },
-  headerButton: { paddingVertical: 6, paddingHorizontal: 10 },
-  headerButtonText: { color: '#3C231C', fontSize: 16, fontWeight: '700' },
-  headerActions: { flexDirection: 'row', alignItems: 'center' },
-  headerActionBtn: { paddingVertical: 8, paddingHorizontal: 12, borderRadius: 12, marginLeft: 8, borderWidth: 1, borderColor: 'rgba(60,35,28,0.06)' },
-  clearBtn: { backgroundColor: '#fff' },
-  saveBtn: { backgroundColor: '#3C231C', borderColor: '#3C231C' },
-  headerActionText: { fontSize: 14, fontWeight: '700', color: '#3C231C' },
-
-  container: { paddingBottom: 140, backgroundColor: '#fff' },
-  pillPreviewWrap: { paddingHorizontal: 18, paddingTop: 12, paddingBottom: 6, backgroundColor: '#fff' },
-  pillPreview: { backgroundColor: '#4E6E33', borderRadius: 36, minHeight: 86, paddingVertical: 12, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginHorizontal: 6, shadowColor: '#000', shadowOffset: { width: 0, height: 6 }, shadowOpacity: 0.06, shadowRadius: 6, elevation: 3 },
-  pillLeft: { flexDirection: 'row', alignItems: 'center', flex: 1 },
-  pillImageWrap: { width: 64, height: 64, borderRadius: 32, overflow: 'hidden', backgroundColor: '#D9D56B', marginRight: 12, alignItems: 'center', justifyContent: 'center' },
-  pillImage: { width: 64, height: 64, borderRadius: 32 },
-  pillTextWrap: { flex: 1 },
-  pillTitle: { color: '#EAF0E7', fontWeight: '700', fontSize: 15, marginBottom: 4 },
-  pillSubtitle: { color: '#DDE6D8', fontSize: 12 },
-  pillEditBtn: { width: 44, height: 44, borderRadius: 22, borderColor: 'rgba(255,255,255,0.18)', borderWidth: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.06)' },
-  pillEditIcon: { color: '#fff', fontSize: 18, fontWeight: '700' },
-
-  form: { paddingHorizontal: 22, paddingTop: 18 },
-  label: { fontSize: 18, fontWeight: '700', color: '#222', marginBottom: 8 },
-  sectionLabel: { marginTop: 12, color: '#6B5A4A' },
-  input: { backgroundColor: '#fff', borderColor: '#DDD', borderWidth: 1, borderRadius: 8, paddingHorizontal: 12, paddingVertical: 10, fontSize: 15, color: '#222' },
-  textArea: { minHeight: 86 },
-  priceRow: { flexDirection: 'row', alignItems: 'center' },
-  pricePrefix: { fontSize: 18, fontWeight: '700', marginRight: 8, color: '#4B2E2A' },
-  priceInput: { flex: 1 },
-  courseSelector: { backgroundColor: '#fff', borderRadius: 6, borderWidth: 1, borderColor: '#DDD', paddingHorizontal: 12, paddingVertical: 12 },
-  courseSelectorText: { fontSize: 16, color: '#4B2E2A', fontWeight: '700' },
-
-  formButtonsRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 18 },
-  primaryButton: { backgroundColor: '#3C231C', paddingVertical: 12, paddingHorizontal: 28, borderRadius: 28 },
-  primaryText: { color: '#FFF6DB', fontWeight: '800', fontSize: 16 },
-  secondaryButton: { borderColor: '#3C231C', borderWidth: 1, paddingVertical: 12, paddingHorizontal: 28, borderRadius: 28, justifyContent: 'center', alignItems: 'center' },
-  secondaryText: { color: '#3C231C', fontWeight: '700', fontSize: 16 },
-
-  modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.18)', justifyContent: 'flex-end' },
-  modalCard: { backgroundColor: '#3C231C', paddingVertical: 8, paddingHorizontal: 6 },
-  courseOption: { paddingVertical: 18, paddingHorizontal: 20, borderBottomColor: 'rgba(255,255,255,0.06)', borderBottomWidth: 1 },
-  courseOptionText: { color: '#FFF6DB', fontWeight: '800', fontSize: 18 },
+  screen: { 
+    flex: 1, 
+    backgroundColor: '#fff' 
+  },
+  headerBar: { 
+    width: '100%', 
+    paddingHorizontal: 14, 
+    paddingVertical: 10, 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    justifyContent: 'space-between', 
+    backgroundColor: 'transparent' 
+  },
+  headerButton: { 
+    paddingVertical: 6, 
+    paddingHorizontal: 10 
+  },
+  headerButtonText: { 
+    color: '#3C231C', 
+    fontSize: 16, 
+    fontWeight: '700' 
+  },
+  headerActions: { 
+    flexDirection: 'row', 
+    alignItems: 'center' 
+  },
+  headerActionBtn: { 
+    paddingVertical: 8, 
+    paddingHorizontal: 12, 
+    borderRadius: 12, 
+    marginLeft: 8, 
+    borderWidth: 1, 
+    borderColor: 'rgba(60,35,28,0.06)' 
+  },
+  clearBtn: { 
+    backgroundColor: '#fff' 
+  },
+  saveBtn: { 
+    backgroundColor: '#3C231C', 
+    borderColor: '#3C231C' 
+  },
+  headerActionText: { 
+    fontSize: 14, 
+    fontWeight: '700', 
+    color: '#3C231C' 
+  },
+  container: { 
+    paddingBottom: 140, 
+    backgroundColor: '#fff' 
+  },
+  pillPreviewWrap: { 
+    paddingHorizontal: 18, 
+    paddingTop: 12, 
+    paddingBottom: 6, 
+    backgroundColor: '#fff' 
+  },
+  pillPreview: { 
+    backgroundColor: '#4E6E33', 
+    borderRadius: 36, 
+    minHeight: 86, 
+    paddingVertical: 12, 
+    paddingHorizontal: 14, 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    justifyContent: 'space-between', 
+    marginHorizontal: 6, 
+    shadowColor: '#000', 
+    shadowOffset: { width: 0, height: 6 }, 
+    shadowOpacity: 0.06, 
+    shadowRadius: 6, 
+    elevation: 3 
+  },
+  pillLeft: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    flex: 1 
+  },
+  pillImageWrap: { 
+    width: 64, 
+    height: 64, 
+    borderRadius: 32, 
+    overflow: 'hidden', 
+    backgroundColor: '#D9D56B', 
+    marginRight: 12, 
+    alignItems: 'center', 
+    justifyContent: 'center' 
+  },
+  pillImage: { 
+    width: 64, 
+    height: 64, 
+    borderRadius: 32 
+  },
+  pillTextWrap: { 
+    flex: 1 
+  },
+  pillTitle: { 
+    color: '#EAF0E7', 
+    fontWeight: '700', 
+    fontSize: 15, 
+    marginBottom: 4 
+  },
+  pillSubtitle: { 
+    color: '#DDE6D8', 
+    fontSize: 12 
+  },
+  pillEditBtn: { 
+    width: 44, 
+    height: 44, 
+    borderRadius: 22, 
+    borderColor: 'rgba(255,255,255,0.18)', 
+    borderWidth: 1, 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    backgroundColor: 'rgba(255,255,255,0.06)' 
+  },
+  pillEditIcon: { 
+    color: '#fff', 
+    fontSize: 18, 
+    fontWeight: '700' 
+  },
+  form: { 
+    paddingHorizontal: 22, 
+    paddingTop: 18 
+  },
+  label: { 
+    fontSize: 18, 
+    fontWeight: '700', 
+    color: '#222', 
+    marginBottom: 8 
+  },
+  sectionLabel: { 
+    marginTop: 12, 
+    color: '#6B5A4A' 
+  },
+  input: { 
+    backgroundColor: '#fff', 
+    borderColor: '#DDD', 
+    borderWidth: 1, 
+    borderRadius: 8, 
+    paddingHorizontal: 12, 
+    paddingVertical: 10, 
+    fontSize: 15, 
+    color: '#222' 
+  },
+  textArea: { 
+    minHeight: 86 
+  },
+  priceRow: { 
+    flexDirection: 'row', 
+    alignItems: 'center' 
+  },
+  pricePrefix: { 
+    fontSize: 18, 
+    fontWeight: '700', 
+    marginRight: 8, 
+    color: '#4B2E2A' 
+  },
+  priceInput: { 
+    flex: 1 
+  },
+  courseSelector: { 
+    backgroundColor: '#fff', 
+    borderRadius: 6, 
+    borderWidth: 1, 
+    borderColor: '#DDD', 
+    paddingHorizontal: 12, 
+    paddingVertical: 12 
+  },
+  courseSelectorText: { 
+    fontSize: 16, 
+    color: '#4B2E2A', 
+    fontWeight: '700' 
+  },
+  formButtonsRow: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    marginTop: 18 
+  },
+  primaryButton: { 
+    backgroundColor: '#3C231C', 
+    paddingVertical: 12, 
+    paddingHorizontal: 28, 
+    borderRadius: 28 
+  },
+  primaryText: { 
+    color: '#FFF6DB', 
+    fontWeight: '800', 
+    fontSize: 16 
+  },
+  secondaryButton: { 
+    borderColor: '#3C231C', 
+    borderWidth: 1, 
+    paddingVertical: 12, 
+    paddingHorizontal: 28, 
+    borderRadius: 28, 
+    justifyContent: 'center', 
+    alignItems: 'center' 
+  },
+  secondaryText: { 
+    color: '#3C231C', 
+    fontWeight: '700', 
+    fontSize: 16 
+  },
+  modalOverlay: { 
+    flex: 1, 
+    backgroundColor: 'rgba(0,0,0,0.18)', 
+    justifyContent: 'flex-end' 
+  },
+  modalCard: { 
+    backgroundColor: '#3C231C', 
+    paddingVertical: 8, 
+    paddingHorizontal: 6 
+  },
+  courseOption: { 
+    paddingVertical: 18, 
+    paddingHorizontal: 20, 
+    borderBottomColor: 'rgba(255,255,255,0.06)', 
+    borderBottomWidth: 1 
+  },
+  courseOptionText: { 
+    color: '#FFF6DB', 
+    fontWeight: '800', 
+    fontSize: 18 
+  },
 });

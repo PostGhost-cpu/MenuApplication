@@ -27,7 +27,13 @@ const Tab: React.FC = () => {
 export default Tab;
 
 const styles = StyleSheet.create({
-  container: { flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 12, paddingVertical: 8, width: '100%' },
+  container: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    paddingHorizontal: 12, 
+    paddingVertical: 8, 
+    width: '100%' 
+  },
   item: {
     flex: 1,
     marginHorizontal: 6,
@@ -42,5 +48,10 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 6 },
     shadowRadius: 6,
   },
-  text: { fontSize: 16, fontWeight: '700', color: '#3C231C', letterSpacing: 0.4 },
+  text: { 
+    fontSize: 16, 
+    fontWeight: '700', 
+    color: '#3C231C', 
+    letterSpacing: 0.4 
+  },
 });

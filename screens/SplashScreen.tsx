@@ -36,41 +36,59 @@ const SplashScreen: React.FC = () => {
 };
 
 export default SplashScreen;
-
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: '#fff' },
-  container: { flex: 1, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 24, paddingHorizontal: 18 },
+  safe: { 
+    flex: 1, 
+    backgroundColor: '#fff' 
+  },
+  container: { 
+    flex: 1, 
+    alignItems: 'center', 
+    justifyContent: 'flex-start', 
+    paddingTop: 24, 
+    paddingHorizontal: 18 
+  },
   imageWrap: {
     width: '100%',
     borderRadius: 12,
     overflow: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.08,
-    shadowRadius: 12,
-    elevation: 6,
   },
-  heroImage: { width: '100%', height: 280, backgroundColor: '#D9D56B' },
-  textWrap: { marginTop: 20, alignItems: 'center', paddingHorizontal: 8 },
-  header: { fontSize: 24, fontWeight: '800', color: '#3C231C', textAlign: 'center' },
-  subheader: { fontSize: 15, color: '#6B5A4A', marginTop: 8, textAlign: 'center' },
-
-  // moved up and made transparent (no yellow bg)
+  heroImage: { 
+    width: '100%', 
+    height: 280, 
+    backgroundColor: '#D9D56B' 
+  },
+  textWrap: { 
+    marginTop: 20, 
+    alignItems: 'center', 
+    paddingHorizontal: 8 
+  },
+  header: { 
+    fontSize: 24, 
+    fontWeight: '800', 
+    color: '#3C231C', 
+    textAlign: 'center' 
+  },
+  subheader: { 
+    fontSize: 15, 
+    color: '#6B5A4A', 
+    marginTop: 8, 
+    textAlign: 'center' 
+  },
   bottomBar: {
     position: 'absolute',
     left: 12,
     right: 12,
-    bottom: 60,            // moved up from bottom
+    bottom: 60,
     height: 72,
     borderRadius: 18,
-    backgroundColor: 'transparent', // removed '#FFF0B8'
+    backgroundColor: 'transparent',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 14,
   
   },
-
   startBtn: {
     width: 200,
     height: 56,
@@ -79,5 +97,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  startText: { color: '#FFF6DB', fontWeight: '800', fontSize: 16 },
+  startText: { 
+    color: '#FFF6DB', 
+    fontWeight: '800', 
+    fontSize: 16 
+  },
 });

@@ -1,15 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  Alert,
-} from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Alert, } from 'react-native';
 
 type ItemShape = { id?: string; img?: string | number; name: string; price: string; description: string };
 type Course = 'All' | 'Starters' | 'Mains' | 'Desserts';
@@ -120,13 +110,32 @@ const MenuFilter: React.FC<Props> = ({ onApply, onCancel, starters = [], mains =
 };
 
 export default MenuFilter;
-
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: '#fff' },
-  container: { paddingHorizontal: 18, paddingTop: 18, paddingBottom: 140 },
-  header: { fontSize: 22, fontWeight: '800', color: '#3C231C', marginBottom: 14 },
-  label: { fontSize: 16, fontWeight: '700', color: '#222', marginBottom: 8 },
-  courseRow: { flexDirection: 'row', flexWrap: 'wrap' },
+  screen: { 
+    flex: 1, 
+    backgroundColor: '#fff' 
+  },
+  container: { 
+    paddingHorizontal: 18, 
+    paddingTop: 18, 
+    paddingBottom: 140 
+  },
+  header: { 
+    fontSize: 22, 
+    fontWeight: '800', 
+    color: '#3C231C', 
+    marginBottom: 14 
+  },
+  label: { 
+    fontSize: 16, 
+    fontWeight: '700', 
+    color: '#222', 
+    marginBottom: 8 
+  },
+  courseRow: { 
+    flexDirection: 'row', 
+    flexWrap: 'wrap' 
+  },
   coursePill: {
     paddingHorizontal: 12,
     paddingVertical: 8,
@@ -137,19 +146,91 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(60,35,28,0.08)',
   },
-  coursePillActive: { backgroundColor: '#4E6E33' },
-  coursePillText: { fontSize: 14, fontWeight: '700', color: '#4B2E2A' },
-  coursePillTextActive: { color: '#EAF0E7' },
-  input: { backgroundColor: '#fff', borderColor: '#DDD', borderWidth: 1, borderRadius: 8, paddingHorizontal: 12, paddingVertical: 10, fontSize: 15, color: '#222' },
-  priceRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 6 },
-  priceWrap: { width: '48%' },
-  smallLabel: { fontSize: 12, color: '#6B5A4A', marginBottom: 6 },
-  inputSmall: { backgroundColor: '#fff', borderColor: '#DDD', borderWidth: 1, borderRadius: 8, paddingHorizontal: 12, paddingVertical: 10, fontSize: 15, color: '#222' },
-  noteRow: { marginTop: 10, marginBottom: 6 },
-  noteText: { fontSize: 12, color: '#8A7B6F' },
-  actionsRow: { flexDirection: 'row', justifyContent: 'space-between', marginTop: 18 },
-  primaryButton: { backgroundColor: '#3C231C', paddingVertical: 12, paddingHorizontal: 28, borderRadius: 28, flex: 1, marginLeft: 12, alignItems: 'center' },
-  primaryText: { color: '#FFF6DB', fontWeight: '800', fontSize: 16 },
-  secondaryButton: { borderColor: '#3C231C', borderWidth: 1, paddingVertical: 12, paddingHorizontal: 28, borderRadius: 28, justifyContent: 'center', alignItems: 'center', flex: 1, marginRight: 12 },
-  secondaryText: { color: '#3C231C', fontWeight: '700', fontSize: 16 },
+  coursePillActive: { 
+    backgroundColor: '#4E6E33' 
+  },
+  coursePillText: { 
+    fontSize: 14, 
+    fontWeight: '700', 
+    color: '#4B2E2A' 
+  },
+  coursePillTextActive: { 
+    color: '#EAF0E7' 
+  },
+  input: { 
+    backgroundColor: '#fff', 
+    borderColor: '#DDD', 
+    borderWidth: 1, 
+    borderRadius: 8, 
+    paddingHorizontal: 12, 
+    paddingVertical: 10, 
+    fontSize: 15, 
+    color: '#222' 
+  },
+  priceRow: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    marginTop: 6 
+  },
+  priceWrap: { 
+    width: '48%' 
+  },
+  smallLabel: { 
+    fontSize: 12, 
+    color: '#6B5A4A', 
+    marginBottom: 6 
+  },
+  inputSmall: { 
+    backgroundColor: '#fff', 
+    borderColor: '#DDD', 
+    borderWidth: 1, 
+    borderRadius: 8, 
+    paddingHorizontal: 12, 
+    paddingVertical: 10, 
+    fontSize: 15, 
+    color: '#222' 
+  },
+  noteRow: { 
+    marginTop: 10, 
+    marginBottom: 6 
+  },
+  noteText: { 
+    fontSize: 12, 
+    color: '#8A7B6F' 
+  },
+  actionsRow: { 
+    flexDirection: 'row', 
+    justifyContent: 'space-between', 
+    marginTop: 18 
+  },
+  primaryButton: { 
+    backgroundColor: '#3C231C', 
+    paddingVertical: 12, 
+    paddingHorizontal: 28, 
+    borderRadius: 28, 
+    flex: 1, 
+    marginLeft: 12, 
+    alignItems: 'center' 
+  },
+  primaryText: { 
+    color: '#FFF6DB', 
+    fontWeight: '800', 
+    fontSize: 16 
+  },
+  secondaryButton: { 
+    borderColor: '#3C231C', 
+    borderWidth: 1, 
+    paddingVertical: 12, 
+    paddingHorizontal: 28, 
+    borderRadius: 28, 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    flex: 1, 
+    marginRight: 12 
+  },
+  secondaryText: { 
+    color: '#3C231C', 
+    fontWeight: '700', 
+    fontSize: 16 
+  },
 });
