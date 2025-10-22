@@ -82,8 +82,8 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     overflow: 'hidden',
     marginRight: 12,
-    borderWidth: 2,
-    borderColor: '#FFF6DB',
+    borderWidth: 1,
+    borderColor: '#000',
   },
   menuinfo: {
     flex: 1,
