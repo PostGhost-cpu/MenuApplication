@@ -1,10 +1,10 @@
 import React from 'react';
-import { SafeAreaView, View, Text, Image, TouchableOpacity, StyleSheet, } from 'react-native';
+import { SafeAreaView, View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { StackParams } from '../App';
 
-const LOGO = require('../assets/icon.png'); 
+const LOGO = require('../assets/icon.png');
 
 const SplashScreen: React.FC = () => {
   const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
@@ -36,18 +36,10 @@ const SplashScreen: React.FC = () => {
 };
 
 export default SplashScreen;
+
 const styles = StyleSheet.create({
-  safe: { 
-    flex: 1, 
-    backgroundColor: '#fff' 
-  },
-  container: { 
-    flex: 1, 
-    alignItems: 'center', 
-    justifyContent: 'flex-start', 
-    paddingTop: 24, 
-    paddingHorizontal: 18 
-  },
+  safe: { flex: 1, backgroundColor: '#fff' },
+  container: { flex: 1, alignItems: 'center', justifyContent: 'flex-start', paddingTop: 24, paddingHorizontal: 18 },
   imageWrap: {
     width: '100%',
     borderRadius: 12,
@@ -58,36 +50,20 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 6,
   },
-  heroImage: {
-    width: '100%',
-    height: 280,
-    backgroundColor: '#D9D56B',
-  },
-  textWrap: { 
-    marginTop: 20, 
-    alignItems: 'center', 
-    paddingHorizontal: 8 
-  },
-  header: { 
-    fontSize: 24, 
-    fontWeight: '800', 
-    color: '#3C231C', 
-    textAlign: 'center' 
-  },
-  subheader: { 
-    fontSize: 15, 
-    color: '#6B5A4A', 
-    marginTop: 8, 
-    textAlign: 'center' 
-  },
+  heroImage: { width: '100%', height: 280, backgroundColor: '#D9D56B' },
+  textWrap: { marginTop: 20, alignItems: 'center', paddingHorizontal: 8 },
+  header: { fontSize: 24, fontWeight: '800', color: '#3C231C', textAlign: 'center' },
+  subheader: { fontSize: 15, color: '#6B5A4A', marginTop: 8, textAlign: 'center' },
+
+  // moved up and made transparent (no yellow bg)
   bottomBar: {
     position: 'absolute',
     left: 12,
     right: 12,
-    bottom: 18,
-    height: 82,
-    borderRadius: 22,
-    backgroundColor: '#FFF0B8',
+    bottom: 60,            // moved up from bottom
+    height: 72,
+    borderRadius: 18,
+    backgroundColor: 'transparent', // removed '#FFF0B8'
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
@@ -96,8 +72,9 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.06,
     shadowRadius: 8,
-    elevation: 8,
+    elevation: 6,
   },
+
   startBtn: {
     width: 200,
     height: 56,
@@ -106,9 +83,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  startText: { 
-    color: '#FFF6DB', 
-    fontWeight: '800', 
-    fontSize: 16 
-  },
+  startText: { color: '#FFF6DB', fontWeight: '800', fontSize: 16 },
 });
