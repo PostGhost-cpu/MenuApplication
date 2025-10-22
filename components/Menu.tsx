@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { TouchableOpacity, View, Text, StyleSheet, } from "react-native";
+import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
 import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParams } from "../App";
+
+import { starterArray } from "./StarterList";
+import { mainArray } from "./MainList";
+import { dessertArray } from "./DessertList";
 
 type RouteNames = keyof StackParams;
 
@@ -37,10 +41,19 @@ const Menu: React.FC = () => {
     setActiveMenu(menuName);
   };
 
+  const counts: Record<string, number> = {
+    "Starter Menu": starterArray.length,
+    "Main Menu": mainArray.length,
+    "Dessert Menu": dessertArray.length,
+  };
+
   return (
     <View style={styles.container}>
       {(Object.keys(Labels) as RouteNames[]).map((key) => {
         const isActive = activeMenu === key;
+        const label = Labels[key];
+        const count = counts[key];
+
         return (
           <TouchableOpacity
             key={key}
@@ -52,8 +65,16 @@ const Menu: React.FC = () => {
           >
             <View style={styles.labelWrap}>
               <Text style={[styles.text, isActive && styles.textActive]}>
-                {Labels[key]}
+                {label}
               </Text>
+
+              {/* show badge only for course labels */}
+              {label ? (
+                <View style={styles.badgeWrap}>
+                  <Text style={styles.badgeText}>{typeof count === "number" ? count : ""}</Text>
+                </View>
+              ) : null}
+
               {isActive && <View style={styles.underline} />}
             </View>
           </TouchableOpacity>
@@ -64,6 +85,7 @@ const Menu: React.FC = () => {
 };
 
 export default Menu;
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
@@ -81,6 +103,7 @@ const styles = StyleSheet.create({
   },
   labelWrap: {
     alignItems: "center",
+    flexDirection: "row",
   },
   text: {
     fontSize: 16,
@@ -96,5 +119,22 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     backgroundColor: "#222",
     alignSelf: "center",
+    position: "absolute",
+    bottom: -8,
+  },
+  badgeWrap: {
+    marginLeft: 8,
+    minWidth: 26,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: 12,
+    backgroundColor: "#3C231C",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  badgeText: {
+    color: "#FFF6DB",
+    fontSize: 12,
+    fontWeight: "700",
   },
 });
