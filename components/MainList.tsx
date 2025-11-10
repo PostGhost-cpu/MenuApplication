@@ -6,7 +6,6 @@ export interface MainData {
   description: string;
 }
 
-
 export const mainArray: MainData[] = [
     {
         img: require('../assets/menu/mexican-enchiladas.png'),

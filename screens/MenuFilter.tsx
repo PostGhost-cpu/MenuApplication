@@ -1,16 +1,15 @@
 import React, { useState, useMemo } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Alert, } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView, Alert } from 'react-native';
+import { starterArray } from '../components/StarterList'
+import { mainArray } from '../components/MainList';
+import { dessertArray } from '../components/DessertList';
 
-type ItemShape = { id?: string; img?: string | number; name: string; price: string; description: string };
 type Course = 'All' | 'Starters' | 'Mains' | 'Desserts';
-type Filters = { course: Course; query?: string; minPrice?: number | null; maxPrice?: number | null; };
-
-type Props = {
-  onApply?: (filters: Filters) => void;
-  onCancel?: () => void;
-  starters?: ItemShape[];
-  mains?: ItemShape[];
-  desserts?: ItemShape[];
+type Filters = {
+  course: Course;
+  query?: string;
+  minPrice?: number | null;
+  maxPrice?: number | null;
 };
 
 const parsePrice = (raw?: string) => {
@@ -20,7 +19,10 @@ const parsePrice = (raw?: string) => {
   return Number.isFinite(n) ? n : null;
 };
 
-const MenuFilter: React.FC<Props> = ({ onApply, onCancel, starters = [], mains = [], desserts = [] }) => {
+const MenuFilter: React.FC<{ onApply?: (filters: Filters) => void; onCancel?: () => void }> = ({
+  onApply,
+  onCancel,
+}) => {
   const [course, setCourse] = useState<Course>('All');
   const [query, setQuery] = useState('');
   const [minRaw, setMinRaw] = useState('');
@@ -29,9 +31,10 @@ const MenuFilter: React.FC<Props> = ({ onApply, onCancel, starters = [], mains =
   const minPrice = useMemo(() => parsePrice(minRaw), [minRaw]);
   const maxPrice = useMemo(() => parsePrice(maxRaw), [maxRaw]);
 
-  const starterCount = starters.length;
-  const mainCount = mains.length;
-  const dessertCount = desserts.length;
+
+  const starterCount = starterArray.length;
+  const mainCount = mainArray.length;
+  const dessertCount = dessertArray.length;
   const totalCount = starterCount + mainCount + dessertCount;
 
   function handleApply() {
@@ -39,7 +42,12 @@ const MenuFilter: React.FC<Props> = ({ onApply, onCancel, starters = [], mains =
       Alert.alert('Validation', 'Minimum price cannot be greater than maximum price.');
       return;
     }
-    const filters: Filters = { course, query: query.trim() || undefined, minPrice, maxPrice };
+    const filters: Filters = {
+      course,
+      query: query.trim() || undefined,
+      minPrice,
+      maxPrice,
+    };
     onApply?.(filters);
   }
 
@@ -52,14 +60,29 @@ const MenuFilter: React.FC<Props> = ({ onApply, onCancel, starters = [], mains =
   }
 
   return (
-    <KeyboardAvoidingView style={styles.screen} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
+    <KeyboardAvoidingView
+      style={styles.screen}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
+      <ScrollView
+        contentContainerStyle={styles.container}
+        keyboardShouldPersistTaps="handled"
+      >
         <Text style={styles.header}>Filter Menu</Text>
 
         <Text style={styles.label}>Course</Text>
         <View style={styles.courseRow}>
-          {(['All', 'Starters', 'Mains', 'Desserts'] as Course[]).map(c => {
+          {(['All', 'Starters', 'Mains', 'Desserts'] as Course[]).map((c) => {
             const isActive = course === c;
+            const count =
+              c === 'All'
+                ? totalCount
+                : c === 'Starters'
+                ? starterCount
+                : c === 'Mains'
+                ? mainCount
+                : dessertCount;
+
             return (
               <TouchableOpacity
                 key={c}
@@ -67,9 +90,13 @@ const MenuFilter: React.FC<Props> = ({ onApply, onCancel, starters = [], mains =
                 onPress={() => setCourse(c)}
                 activeOpacity={0.85}
               >
-                <Text style={[styles.coursePillText, isActive && styles.coursePillTextActive]}>
-                  {c}
-                  {c === 'All' ? ` (${totalCount})` : c === 'Starters' ? ` (${starterCount})` : c === 'Mains' ? ` (${mainCount})` : ` (${dessertCount})`}
+                <Text
+                  style={[
+                    styles.coursePillText,
+                    isActive && styles.coursePillTextActive,
+                  ]}
+                >
+                  {c} ({count})
                 </Text>
               </TouchableOpacity>
             );
@@ -77,22 +104,41 @@ const MenuFilter: React.FC<Props> = ({ onApply, onCancel, starters = [], mains =
         </View>
 
         <Text style={styles.label}>Search</Text>
-        <TextInput style={styles.input} placeholder="Search name or description" value={query} onChangeText={setQuery} />
+        <TextInput
+          style={styles.input}
+          placeholder="Search name or description"
+          value={query}
+          onChangeText={setQuery}
+        />
 
         <Text style={[styles.label, { marginTop: 12 }]}>Price range (R)</Text>
         <View style={styles.priceRow}>
           <View style={styles.priceWrap}>
             <Text style={styles.smallLabel}>Min</Text>
-            <TextInput style={styles.inputSmall} placeholder="0" value={minRaw} onChangeText={setMinRaw} keyboardType="numeric" />
+            <TextInput
+              style={styles.inputSmall}
+              placeholder="0"
+              value={minRaw}
+              onChangeText={setMinRaw}
+              keyboardType="numeric"
+            />
           </View>
           <View style={styles.priceWrap}>
             <Text style={styles.smallLabel}>Max</Text>
-            <TextInput style={styles.inputSmall} placeholder="999" value={maxRaw} onChangeText={setMaxRaw} keyboardType="numeric" />
+            <TextInput
+              style={styles.inputSmall}
+              placeholder="999"
+              value={maxRaw}
+              onChangeText={setMaxRaw}
+              keyboardType="numeric"
+            />
           </View>
         </View>
 
         <View style={styles.noteRow}>
-          <Text style={styles.noteText}>Tip: use comma or dot for decimals. Example: 120,00 or 120.00</Text>
+          <Text style={styles.noteText}>
+            Tip: use comma or dot for decimals. Example: 120,00 or 120.00
+          </Text>
         </View>
 
         <View style={styles.actionsRow}>
@@ -104,8 +150,36 @@ const MenuFilter: React.FC<Props> = ({ onApply, onCancel, starters = [], mains =
             <Text style={styles.primaryText}>Apply</Text>
           </TouchableOpacity>
         </View>
-      </ScrollView>
-    </KeyboardAvoidingView>
+        <View style={styles.resultsRow}>
+  <Text style={styles.resultsText}>
+    {(() => {
+      // Filter logic example
+      let filtered = [];
+      const allItems = [...starterArray, ...mainArray, ...dessertArray];
+
+      if (course === 'Starters') filtered = starterArray;
+      else if (course === 'Mains') filtered = mainArray;
+      else if (course === 'Desserts') filtered = dessertArray;
+      else filtered = allItems;
+
+      // Apply search and price filters
+      if (query.trim()) {
+        filtered = filtered.filter((item) =>
+          item.name.toLowerCase().includes(query.trim().toLowerCase()) ||
+          item.description.toLowerCase().includes(query.trim().toLowerCase())
+        );
+      }
+      if (minPrice != null) filtered = filtered.filter((item) => parseFloat(item.price) >= minPrice);
+      if (maxPrice != null) filtered = filtered.filter((item) => parseFloat(item.price) <= maxPrice);
+
+      return filtered.length > 0
+        ? `${filtered.length} item${filtered.length > 1 ? 's' : ''} found`
+        : 'No items found';
+    })()}
+    </Text>
+  </View>
+  </ScrollView>
+  </KeyboardAvoidingView>
   );
 };
 
@@ -157,15 +231,15 @@ const styles = StyleSheet.create({
   coursePillTextActive: { 
     color: '#EAF0E7' 
   },
-  input: { 
-    backgroundColor: '#fff', 
-    borderColor: '#DDD', 
-    borderWidth: 1, 
-    borderRadius: 8, 
-    paddingHorizontal: 12, 
-    paddingVertical: 10, 
-    fontSize: 15, 
-    color: '#222' 
+  input: {
+    backgroundColor: '#fff',
+    borderColor: '#DDD',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    fontSize: 15,
+    color: '#222',
   },
   priceRow: { 
     flexDirection: 'row', 
@@ -180,15 +254,15 @@ const styles = StyleSheet.create({
     color: '#6B5A4A', 
     marginBottom: 6 
   },
-  inputSmall: { 
-    backgroundColor: '#fff', 
-    borderColor: '#DDD', 
-    borderWidth: 1, 
-    borderRadius: 8, 
-    paddingHorizontal: 12, 
-    paddingVertical: 10, 
-    fontSize: 15, 
-    color: '#222' 
+  inputSmall: {
+    backgroundColor: '#fff',
+    borderColor: '#DDD',
+    borderWidth: 1,
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    fontSize: 15,
+    color: '#222',
   },
   noteRow: { 
     marginTop: 10, 
@@ -203,34 +277,40 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between', 
     marginTop: 18 
   },
-  primaryButton: { 
-    backgroundColor: '#3C231C', 
-    paddingVertical: 12, 
-    paddingHorizontal: 28, 
-    borderRadius: 28, 
-    flex: 1, 
-    marginLeft: 12, 
-    alignItems: 'center' 
+  primaryButton: {
+    backgroundColor: '#3C231C',
+    paddingVertical: 12,
+    paddingHorizontal: 28,
+    borderRadius: 28,
+    flex: 1,
+    marginLeft: 12,
+    alignItems: 'center',
   },
   primaryText: { 
     color: '#FFF6DB', 
     fontWeight: '800', 
     fontSize: 16 
   },
-  secondaryButton: { 
-    borderColor: '#3C231C', 
-    borderWidth: 1, 
-    paddingVertical: 12, 
-    paddingHorizontal: 28, 
-    borderRadius: 28, 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    flex: 1, 
-    marginRight: 12 
+  secondaryButton: {
+    borderColor: '#3C231C',
+    borderWidth: 1,
+    paddingVertical: 12,
+    paddingHorizontal: 28,
+    borderRadius: 28,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    marginRight: 12,
   },
-  secondaryText: { 
-    color: '#3C231C', 
-    fontWeight: '700', 
-    fontSize: 16 
-  },
+  secondaryText: { color: '#3C231C', fontWeight: '700', fontSize: 16 },
+  resultsRow: {
+  marginTop: 16,
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+resultsText: {
+  fontSize: 15,
+  fontWeight: '600',
+  color: '#3C231C',
+},
 });

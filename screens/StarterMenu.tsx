@@ -1,18 +1,29 @@
-import React from 'react'
-import { View, Text, StyleSheet, FlatList, Image } from 'react-native'
-import Menu from '../components/Menu'
-import Tab from '../components/Tab'
-import { starterArray, StarterData } from '../components/StarterList'
+import React from 'react';
+import { View, Text, StyleSheet, FlatList, Image, Alert, TouchableOpacity, ImageSourcePropType } from 'react-native';
+import Menu from '../components/Menu';
+import Tab from '../components/Tab';
+import { starterArray, StarterData } from '../components/StarterList';
+import { addToOrder } from '../components/OrderStore';
 
-import { ImageSourcePropType } from 'react-native';
-const PLACEHOLDER = require('../assets/place-holder.png'); 
+const PLACEHOLDER = require('../assets/place-holder.png');
 
 const getImageSource = (img?: string | number): ImageSourcePropType => {
-  if (!img) return PLACEHOLDER;                    
+  if (!img) return PLACEHOLDER;
   return typeof img === 'number' ? img : { uri: String(img) };
 };
 
-const ListItem = ({singleBlock}:{singleBlock:StarterData}) => {
+const ListItem = ({ singleBlock }: { singleBlock: StarterData }) => {
+  const handleAddToOrder = () => {
+    addToOrder({
+      id: singleBlock.id,
+      img: singleBlock.img,
+      name: singleBlock.name,
+      price: singleBlock.price,
+      qty: 1,
+    });
+    Alert.alert('Added to Order', `${singleBlock.name} has been added.`);
+  };
+
   return (
     <View style={styles.menuoption}>
       <Image style={styles.menuimg} source={getImageSource(singleBlock.img)} />
@@ -29,14 +40,17 @@ const ListItem = ({singleBlock}:{singleBlock:StarterData}) => {
             {singleBlock.description}
           </Text>
 
-          <View style={styles.plusWrap}>
+          <TouchableOpacity
+            style={styles.plusWrap}
+            activeOpacity={0.7}
+            onPress={handleAddToOrder}>
             <Text style={styles.plusText}>+</Text>
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
   );
-}
+};
 
 const StarterMenu = () => {
   return (
@@ -46,13 +60,14 @@ const StarterMenu = () => {
       <FlatList
         data={starterArray}
         renderItem={({ item }) => <ListItem singleBlock={item} />}
+        keyExtractor={(item, index) => `${item.id || index}`}
       />
       <Tab />
     </View>
-  )
-}
+  );
+};
 
-export default StarterMenu
+export default StarterMenu;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -108,7 +123,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#4E6E33',
   },
   pillDessert: {
-    backgroundColor: '#D9D56B', 
+    backgroundColor: '#D9D56B',
   },
   titleRow: {
     flexDirection: 'row',
@@ -130,7 +145,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 12,
-    color: '#6B5A4A', 
+    color: '#6B5A4A',
     marginTop: 6,
     lineHeight: 16,
   },
@@ -199,7 +214,7 @@ const styles = StyleSheet.create({
   applyButton: {
     marginTop: 18,
     alignSelf: 'center',
-    backgroundColor: '#3C231C', 
+    backgroundColor: '#3C231C',
     paddingHorizontal: 40,
     paddingVertical: 12,
     borderRadius: 28,

@@ -3,7 +3,6 @@ import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
 import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { StackParams } from "../App";
-
 import { starterArray } from "./StarterList";
 import { mainArray } from "./MainList";
 import { dessertArray } from "./DessertList";
